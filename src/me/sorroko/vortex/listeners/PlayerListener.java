@@ -32,6 +32,7 @@ public class PlayerListener implements Listener {
 	HashMap<String, Location> vortexs = new HashMap<String, Location>();
 	
 	public void updateVortexs(){
+		vortexs.clear();
 		ConfigurationSection cSelection = plugin.mainConf.getConfigurationSection("vortex_locs");
 		if(cSelection == null) return;
 		Set<String> vortex_list = cSelection.getKeys(false);

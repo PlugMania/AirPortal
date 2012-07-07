@@ -9,6 +9,7 @@
 #IntelliJ
 /.idea
 /*.iml
+/out
 
 # various other potential build files
 /bin

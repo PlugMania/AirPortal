@@ -12,6 +12,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.List;
+import java.util.Set;
+
 
 public class VortexCommand implements CommandExecutor {
 
@@ -45,12 +48,10 @@ public class VortexCommand implements CommandExecutor {
 			
 			if(args.length > 0){
 				if(args[0].equalsIgnoreCase("create") && args.length >= 2){
-					
 					Location loc = player.getLocation();
 					
 					String l = loc.getWorld().getName() + ":" + loc.getBlockX() + ":" + loc.getBlockY() + ":" + loc.getBlockZ();
-					
-					
+
 					plugin.mainConf.set("vortex_locs." + args[1] + ".loc", l);
 					ConfigUtil.saveConfig(plugin.mainConf, "config");
 					plugin.pListener.updateVortexs();
@@ -87,6 +88,14 @@ public class VortexCommand implements CommandExecutor {
 							return true;
 						}
 					}
+				} else if(args[0].equalsIgnoreCase("list")) {
+					Set<String> vortexSet = plugin.mainConf.getConfigurationSection("vortex_locs").getKeys(false);
+					for(String v : vortexSet){
+						String h = plugin.mainConf.getString("vortex_locs." + v + ".height");
+						String s = ChatColor.AQUA + v + ChatColor.DARK_GRAY +  "- Height: " + h;
+						player.sendMessage(h);
+					}
+					player.sendMessage(ChatColor.DARK_GRAY+ "If you can't see all the portal scroll the chat!");
 				}
 			}
 		}
