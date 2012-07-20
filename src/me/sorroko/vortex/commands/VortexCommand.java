@@ -59,20 +59,22 @@ public class VortexCommand implements CommandExecutor {
 				} else if(args[0].equalsIgnoreCase("link") && args.length >= 3){
 				plugin.VortexManager.getVortex(args[1]).destination=args[2];
 						return true;
-					}
+					
 				} else if(args[0].equalsIgnoreCase("height") && args.length >= 3){
 
 					plugin.VortexManager.getVortex(args[1]).height=args[2];
 					return true;
 					
-				} else if(args[0].equalsIgnoreCase("list")) {
-					for(Entry<String, me.sorroko.vortex.Vortex> entry: plugin.VortexManager.getVortexEntries()){
-						player.sendMessage(entry.getKey() + "->" + entry.getValue().destination + " [" + entry.getValue().height + "]");
-					}
-					player.sendMessage(ChatColor.DARK_GRAY+ "If you can't see all the portal scroll the chat!");
-					return true;
+				} else {}
+			}
+				if(args[0].equalsIgnoreCase("list")) {
+				for(Entry<String, me.sorroko.vortex.Vortex> entry: plugin.VortexManager.getVortexEntries()){
+					player.sendMessage(entry.getKey() + "->" + entry.getValue().destination + " [" + entry.getValue().height + "]");
 				}
-		
+				player.sendMessage(ChatColor.DARK_GRAY+ "If you can't see all the portal scroll the chat!");
+				return true;
+			
+			}
 	}
 		return false;
 
