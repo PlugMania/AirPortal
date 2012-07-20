@@ -1,7 +1,7 @@
 name: AirPortal
 author: Sorroko
 main: me.sorroko.vortex.AirPortal
-version: 0.0.1
+version: 0.0.2
 description: Teleport in style with an airportal.
 commands:
   airportal:

@@ -2,16 +2,16 @@ package me.sorroko.vortex.commands;
 
 
 import me.sorroko.vortex.AirPortal;
-import me.sorroko.vortex.ConfigUtil;
 import me.sorroko.vortex.Util;
 import me.sorroko.vortex.Vortex;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.Map.Entry;
 
 
 public class VortexCommand implements CommandExecutor {
@@ -47,7 +47,6 @@ public class VortexCommand implements CommandExecutor {
 			if(args.length > 0){
 				
 				if(args[0].equalsIgnoreCase("create") && args.length >= 2){
-		
 					plugin.VortexManager.setVortex(args[1], new Vortex(((Player)sender).getLocation(),"normal",""));
 					player.sendMessage(ChatColor.DARK_GRAY + "AirPortal created");
 					
@@ -62,14 +61,21 @@ public class VortexCommand implements CommandExecutor {
 						return true;
 					}
 				} else if(args[0].equalsIgnoreCase("height") && args.length >= 3){
+
 					plugin.VortexManager.getVortex(args[1]).height=args[2];
 					return true;
-				}else{
 					
+				} else if(args[0].equalsIgnoreCase("list")) {
+					for(Entry<String, me.sorroko.vortex.Vortex> entry: plugin.VortexManager.getVortexEntries()){
+						player.sendMessage(entry.getKey() + "->" + entry.getValue().destination + " [" + entry.getValue().height + "]");
+					}
+					player.sendMessage(ChatColor.DARK_GRAY+ "If you can't see all the portal scroll the chat!");
+					return true;
 				}
-	
-		}
-		return false;
+		
 	}
+		return false;
+
+}
 
 }

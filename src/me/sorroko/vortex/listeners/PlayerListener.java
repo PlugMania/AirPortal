@@ -1,16 +1,11 @@
 package me.sorroko.vortex.listeners;
 
-import java.util.HashMap;
 import java.util.Map.Entry;
-import java.util.Set;
-
 import me.sorroko.vortex.AirPortal;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
