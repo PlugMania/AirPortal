@@ -47,8 +47,8 @@ public class PlayerListener implements Listener {
 				String name = entry.getKey();
 				Location loc = entry.getValue().location;
 				if(to.getWorld() == loc.getWorld()
-						&& (loc.getBlockX() - 2) <= to.getBlockX() && to.getBlockX() <= (loc.getBlockX() + 2)
-						&& (loc.getBlockZ() - 2) <= to.getBlockZ() && to.getBlockZ() <= (loc.getBlockZ() + 2)
+						&& (loc.getBlockX() - entry.getValue().radius) <= to.getBlockX() && to.getBlockX() <= (loc.getBlockX() + entry.getValue().radius)
+						&& (loc.getBlockZ() - entry.getValue().radius) <= to.getBlockZ() && to.getBlockZ() <= (loc.getBlockZ() + entry.getValue().radius)
 						&& (loc.getBlockY() - 1) <= to.getBlockY() && to.getBlockY() <= (loc.getBlockY() + 1)
 						&& from.getBlockY() == to.getBlockY()){
 
@@ -66,7 +66,10 @@ public class PlayerListener implements Listener {
 							multiplier = 2;
 						} else if(height.equalsIgnoreCase("space")){
 							multiplier = 10;
-						} else {
+						} else if(me.sorroko.vortex.Util.isNumeric(height)){
+							multiplier = Integer.parseInt(height);
+						}
+						else {
 							multiplier = 6;
 						}
 					} else {

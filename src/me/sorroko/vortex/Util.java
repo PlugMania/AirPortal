@@ -48,4 +48,13 @@ public class Util {
 	public static void sendMessagePlayerNotOnline(CommandSender sender) {
 		sender.sendMessage(ChatColor.RED + "That player is not online!");
 	}
+	
+	public static boolean isNumeric(String s){
+		try{
+		Integer.parseInt(s);
+		return true;
+		}catch(Exception e){
+			return false;
+		}
+	}
 }

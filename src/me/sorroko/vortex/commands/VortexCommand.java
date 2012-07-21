@@ -47,7 +47,7 @@ public class VortexCommand implements CommandExecutor {
 			if(args.length > 0){
 				
 				if(args[0].equalsIgnoreCase("create") && args.length >= 2){
-					plugin.VortexManager.setVortex(args[1], new Vortex(((Player)sender).getLocation(),"normal",""));
+					plugin.VortexManager.setVortex(args[1], new Vortex(((Player)sender).getLocation(),"normal","",2));
 					player.sendMessage(ChatColor.DARK_GRAY + "AirPortal created");
 					
 					return true;
@@ -63,6 +63,10 @@ public class VortexCommand implements CommandExecutor {
 				} else if(args[0].equalsIgnoreCase("height") && args.length >= 3){
 
 					plugin.VortexManager.getVortex(args[1]).height=args[2];
+					return true;
+					
+				} else if(args[0].equalsIgnoreCase("radius") && args.length >= 3){
+					plugin.VortexManager.getVortex(args[1]).radius=Integer.parseInt(args[2]);
 					return true;
 					
 				} else {}
