@@ -49,9 +49,9 @@ public class Util {
 		sender.sendMessage(ChatColor.RED + "That player is not online!");
 	}
 	
-	public static boolean isNumeric(String s){
+	public static boolean isDecimal(String s){
 		try{
-		Integer.parseInt(s);
+		Double.parseDouble(s);
 		return true;
 		}catch(Exception e){
 			return false;

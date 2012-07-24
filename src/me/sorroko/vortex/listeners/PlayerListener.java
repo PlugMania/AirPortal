@@ -59,15 +59,15 @@ public class PlayerListener implements Listener {
 					if(plugin.vortex_waiting.containsKey(player) && plugin.vortex_waiting.get(player) != null)
 						return;
 
-					final int multiplier;
+					final double multiplier;
 					String height = plugin.VortexManager.getVortex(name).height;
 					if(height != null){
 						if(height.equalsIgnoreCase("low")){
 							multiplier = 2;
 						} else if(height.equalsIgnoreCase("space")){
 							multiplier = 10;
-						} else if(me.sorroko.vortex.Util.isNumeric(height)){
-							multiplier = Integer.parseInt(height);
+						} else if(me.sorroko.vortex.Util.isDecimal(height)){
+							multiplier = Double.parseDouble(height);
 						}
 						else {
 							multiplier = 6;

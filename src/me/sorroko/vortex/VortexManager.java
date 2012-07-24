@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.bukkit.configuration.file.YamlConfiguration;
+
 public class VortexManager {
 	AirPortal plugin;
 	public VortexManager(AirPortal instance){
 		plugin=instance;
 	}
 private HashMap<String,Vortex> vortexii=new HashMap<String,Vortex>();
+public YamlConfiguration vortexConf;
 
 public Vortex getVortex(String name){
 	return vortexii.get(name);
@@ -32,16 +35,18 @@ public void removeVortex(String name){
 }
 
 public void loadVortexii(){
+ConfigUtil.loadConfig("vortex_locs");
+vortexConf = ConfigUtil.getConfig("vortex_locs");
 	if(!plugin.mainConf.isSet("vortex_locs")) plugin.mainConf.createSection("vortex_locs");
-	for(String k:plugin.mainConf.getKeys(false)){
-		vortexii.put(k, new Vortex(plugin.mainConf.getConfigurationSection("vortex_locs").getConfigurationSection(k)));
+	for(String k:vortexConf.getKeys(false)){
+		vortexii.put(k, new Vortex(vortexConf.getConfigurationSection(k)));
 	}
 }
 
 public void saveConfig(){
 	for(String k:vortexii.keySet()){
-		plugin.mainConf.getConfigurationSection("vortex_locs").createSection(k);
-		plugin.mainConf.getConfigurationSection("vortex_locs").set(k, vortexii.get(k).save(plugin.mainConf.getConfigurationSection("vortex_locs").getConfigurationSection(k)));
+		vortexConf.createSection(k);
+		vortexConf.set(k, vortexii.get(k).save(vortexConf.getConfigurationSection(k)));
 	}
 		
 }
