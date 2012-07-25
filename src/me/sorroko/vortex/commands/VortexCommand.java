@@ -54,19 +54,22 @@ public class VortexCommand implements CommandExecutor {
 				} else if(args[0].equalsIgnoreCase("remove") && args.length >= 2){
 					
 					plugin.VortexManager.removeVortex(args[1]);
+					sender.sendMessage("Removing portal '" + args[1] + "'.");
 						return true;
 					
 				} else if(args[0].equalsIgnoreCase("link") && args.length >= 3){
 				plugin.VortexManager.getVortex(args[1]).destination=args[2];
+				sender.sendMessage("Linking portal '" + args[1] + "' to portal '" + args[2] + "'.");
 						return true;
 					
 				} else if(args[0].equalsIgnoreCase("height") && args.length >= 3){
-
 					plugin.VortexManager.getVortex(args[1]).height=args[2];
+					sender.sendMessage("set " + args[0] + " to '" + args[2] + "' on portal '" + args[1] + "'.");
 					return true;
 					
 				} else if(args[0].equalsIgnoreCase("radius") && args.length >= 3){
 					plugin.VortexManager.getVortex(args[1]).radius=Integer.parseInt(args[2]);
+					sender.sendMessage("set " + args[0] + " to '" + args[2] + "' on portal '" + args[1] + "'.");
 					return true;
 					
 				} else {}

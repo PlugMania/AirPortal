@@ -37,7 +37,6 @@ public void removeVortex(String name){
 public void loadVortexii(){
 ConfigUtil.loadConfig("vortex_locs");
 vortexConf = ConfigUtil.getConfig("vortex_locs");
-	if(!plugin.mainConf.isSet("vortex_locs")) plugin.mainConf.createSection("vortex_locs");
 	for(String k:vortexConf.getKeys(false)){
 		vortexii.put(k, new Vortex(vortexConf.getConfigurationSection(k)));
 	}
@@ -48,6 +47,7 @@ public void saveConfig(){
 		vortexConf.createSection(k);
 		vortexConf.set(k, vortexii.get(k).save(vortexConf.getConfigurationSection(k)));
 	}
+	ConfigUtil.saveConfig(vortexConf, "configName");
 		
 }
 
